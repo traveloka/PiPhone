@@ -315,11 +315,6 @@ static PiPPlayerViewControllerPosition PiPPlayerViewControllerPositionVisiblePos
         return;
     }
     
-    if (!_stashedView.visible) {
-        [_playbackControlsViewController toggleVisibility];
-        return;
-    }
-    
     self.position = PiPPlayerViewControllerPositionVisiblePosition(self.position);
     [self.view.superview setNeedsLayout];
     
@@ -383,8 +378,6 @@ static PiPPlayerViewControllerPosition PiPPlayerViewControllerPositionVisiblePos
 
 - (void)handlePinch:(UIPinchGestureRecognizer *)gesture {
     if (gesture.state == UIGestureRecognizerStateBegan) {
-        _playbackControlsViewController.view.hidden = YES;
-        
         _pinchMinScale = _minSize.width / self.view.frame.size.width;
         _pinchMaxScale = _maxSize.width / self.view.frame.size.width;
     }
@@ -476,10 +469,8 @@ static PiPPlayerViewControllerPosition PiPPlayerViewControllerPositionVisiblePos
     
     if (_playerLayerObserver.initializing) {
         _loadingIndicatorView.hidden = NO;
-        _playbackControlsViewController.hidden = YES;
     } else {
         _loadingIndicatorView.hidden = YES;
-        _playbackControlsViewController.hidden = _stashedView.visible;
     }
 }
 

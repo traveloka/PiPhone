@@ -45,7 +45,7 @@
         
         _totalTimeRangeView = [[UIView alloc] init];
         _currentTimeRangeView = [[UIView alloc] init];
-        
+        _hidden = YES;
         _visible = YES;
     }
     
